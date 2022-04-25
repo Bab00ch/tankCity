@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f42323e6-f34a-488f-a05b-dae78cca4895" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/bullets.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/city.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/credits.list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/death.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/explosion.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/hit.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/player1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/player2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/won.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/bullet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/char_bottom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/char_front.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/char_left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/char_right.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
