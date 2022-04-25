@@ -1,6 +1,5 @@
 import pygame
 
-
 def scale(image, scale):
     size = image.get_size()
     size = list(size)
@@ -22,31 +21,27 @@ bullet_up = scale(pygame.image.load('assets/bullet_3.png'),2)
 
 
 def moves(p1, p2, keys,bricks):
-    horizontal = False
     if keys[pygame.K_z]:
         p1.move("up",bricks)
         horizontal = True
     if keys[pygame.K_s]:
         p1.move("down",bricks)
         horizontal = True
-    if not horizontal:
-        if keys[pygame.K_d]:
-            p1.move("right",bricks)
-        if keys[pygame.K_q]:
-            p1.move("left",bricks)
+    if keys[pygame.K_d]:
+        p1.move("right",bricks)
+    if keys[pygame.K_q]:
+        p1.move("left",bricks)
 
-    horizontal = False
     if keys[pygame.K_UP]:
         p2.move("up",bricks)
         horizontal = True
     if keys[pygame.K_DOWN]:
         p2.move("down",bricks)
         horizontal = True
-    if not horizontal:
-        if keys[pygame.K_RIGHT]:
-            p2.move("right",bricks)
-        if keys[pygame.K_LEFT]:
-            p2.move("left",bricks)
+    if keys[pygame.K_RIGHT]:
+        p2.move("right",bricks)
+    if keys[pygame.K_LEFT]:
+        p2.move("left",bricks)
 
     if p1.x > 576 :
         p1.x = 576
@@ -72,7 +67,7 @@ class player:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.speed = 5
+        self.speed = 3
         self.hp = 3
         self.cSprite = up
 
