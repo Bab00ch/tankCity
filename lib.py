@@ -1,4 +1,7 @@
+import random
+
 import pygame
+from random import randint
 
 def scale(image, scale):
     size = image.get_size()
@@ -18,30 +21,36 @@ bullet_left = scale(pygame.image.load('assets/bullet_0.png'),2)
 bullet_down = scale(pygame.image.load('assets/bullet_1.png'),2)
 bullet_right = scale(pygame.image.load('assets/bullet_2.png'),2)
 bullet_up = scale(pygame.image.load('assets/bullet_3.png'),2)
+teleport = pygame.image.load('assets/teleport.png')
+heart = pygame.image.load('assets/heart.png')
+horizontal = False
 
 
 def moves(p1, p2, keys,bricks):
+    global horizontal
     if keys[pygame.K_z]:
         p1.move("up",bricks)
         horizontal = True
     if keys[pygame.K_s]:
         p1.move("down",bricks)
         horizontal = True
-    if keys[pygame.K_d]:
-        p1.move("right",bricks)
-    if keys[pygame.K_q]:
-        p1.move("left",bricks)
-
+    if not horizontal:
+        if keys[pygame.K_d]:
+            p1.move("right",bricks)
+        if keys[pygame.K_q]:
+            p1.move("left",bricks)
+    horizontal = False
     if keys[pygame.K_UP]:
         p2.move("up",bricks)
         horizontal = True
     if keys[pygame.K_DOWN]:
         p2.move("down",bricks)
         horizontal = True
-    if keys[pygame.K_RIGHT]:
-        p2.move("right",bricks)
-    if keys[pygame.K_LEFT]:
-        p2.move("left",bricks)
+    if not horizontal:
+        if keys[pygame.K_RIGHT]:
+            p2.move("right",bricks)
+        if keys[pygame.K_LEFT]:
+            p2.move("left",bricks)
 
     if p1.x > 576 :
         p1.x = 576
@@ -70,6 +79,11 @@ class player:
         self.speed = 3
         self.hp = 3
         self.cSprite = up
+        self.bullets = 3
+        self.bullet_count = 0
+        self.maxBullets = 3
+        self.teleports = 0
+        self.teleporting = False
 
     def move(self, o,bricks):
         if o == "left":
@@ -128,6 +142,45 @@ class player:
             return pygame.Rect((self.x+8 + self.speed, self.y+8), (48, 48))
         return pygame.Rect((self.x +8 - self.speed, self.y+8), (48, 48))
 
+    def frame(self):
+        if self.bullets < self.maxBullets:
+            self.bullet_count = self.bullet_count + 1
+            if self.bullet_count > 180 :
+                self.bullets = self.bullets + 1
+                self.bullet_count = 0
+        if not self.teleporting:
+            if self.cSprite == teleport:
+                self.cSprite = up
+
+    def canShoot(self):
+        if not self.bullets == 0:
+            self.bullets = self.bullets - 1
+            return True
+        return False
+
+    def getBullets(self):
+        return self.bullets
+
+    def getHP(self):
+        return self.hp
+
+    def getPowerUp(self,powerUp):
+        if powerUp.getType() == "heart" and self.hp < 5:
+            self.hp = self.hp + 1
+        elif powerUp.getType() == "teleporter" and self.teleports < 1:
+            self.teleports = self.teleports + 1
+
+    def doTeleport(self, brickList):
+        while True:
+            collide = False
+            self.x = randint(0,576)
+            self.y = randint(0, 576)
+            for i in brickList:
+                if self.rect().colliderect(i.rect()):
+                    collide = True
+            if not collide:
+                self.teleports = 0
+                return
 class newBrick:
     def __init__(self, x, y):
         self.x = x*64
@@ -177,4 +230,26 @@ class newBullet:
 
         return (self.x,self.y)
 
+class powerUp:
+    def __init__(self, x, y,):
+        self.x = x + randint(0,64)
+        self.y = y + randint(0,64)
+        if randint(0,5) < 3:
+            self.type = "heart"
+        else:
+            self.type = "teleporter"
 
+    def render(self):
+        if self.type == "heart":
+            return heart
+        if self.type == "teleporter":
+            return teleport
+
+    def coords(self):
+        return (self.x, self.y)
+
+    def rect(self):
+        return pygame.Rect((self.x, self.y), (16, 16))
+
+    def getType(self):
+        return self.type
