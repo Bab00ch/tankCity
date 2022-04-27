@@ -70,6 +70,10 @@ while running:
     for d in range(0,10):
         for f in range(0, 10):
             surface.blit(background,(d*64,f*64))
+    for p in players:
+        p.frame()
+        if p.teleports == 1:
+            surface.blit(p.tpSprite(),p.tpCoords())
     surface.blit(p1.sprite(), p1.coords())
     surface.blit(p2.sprite(), p2.coords())
     for i in bricks:
@@ -94,10 +98,6 @@ while running:
                         running = False
                         loser = p
                     break
-    for p in players:
-        p.frame()
-        if p.teleports == 1:
-            surface.blit(p.tpSprite(),p.tpCoords())
     for p in powerUps:
         for i in players:
             if p.rect().colliderect(i.rect()):
