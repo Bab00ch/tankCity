@@ -76,6 +76,8 @@ class player:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+        self.tpx = 0
+        self.tpy = 0
         self.speed = 3
         self.hp = 3
         self.cSprite = up
@@ -133,6 +135,9 @@ class player:
     def rect(self):
         return pygame.Rect((self.x+8, self.y+8), (48, 48))
 
+    def tpRect(self):
+        return pygame.Rect((self.tpx+8, self.tpy+8), (48, 48))
+
     def nRect(self, o):
         if o == "up":
             return pygame.Rect((self.x+8, self.y+8 - self.speed), (48, 48))
@@ -164,23 +169,32 @@ class player:
     def getHP(self):
         return self.hp
 
-    def getPowerUp(self,powerUp):
+    def getPowerUp(self,powerUp,brickList):
         if powerUp.getType() == "heart" and self.hp < 5:
             self.hp = self.hp + 1
         elif powerUp.getType() == "teleporter" and self.teleports < 1:
-            self.teleports = self.teleports + 1
+            self.teleports = 1
+            while True:
+                collide = False
+                self.tpx = randint(0, 576)
+                self.tpy = randint(0, 576)
+                for i in brickList:
+                    if self.tpRect().colliderect(i.rect()):
+                        collide = True
+                if not collide:
+                    break
 
-    def doTeleport(self, brickList):
-        while True:
-            collide = False
-            self.x = randint(0,576)
-            self.y = randint(0, 576)
-            for i in brickList:
-                if self.rect().colliderect(i.rect()):
-                    collide = True
-            if not collide:
-                self.teleports = 0
-                return
+    def doTeleport(self):
+        self.x = self.tpx
+        self.y = self.tpy
+        self.teleports = 0
+
+    def tpCoords(self):
+        return (self.tpx,self.tpy)
+
+    def tpSprite(self):
+        return teleport
+
 class newBrick:
     def __init__(self, x, y):
         self.x = x*64

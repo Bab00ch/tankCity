@@ -61,10 +61,10 @@ while running:
                     laser.play()
             if event.key == pygame.K_e:
                 if p1.teleports == 1:
-                    p1.doTeleport(bricks)
+                    p1.doTeleport()
             if event.key == pygame.K_l:
                 if p2.teleports == 1:
-                    p2.doTeleport(bricks)
+                    p2.doTeleport()
     keys = pygame.key.get_pressed()
     lib.moves(p1,p2,keys,bricks)
     for d in range(0,10):
@@ -96,10 +96,12 @@ while running:
                     break
     for p in players:
         p.frame()
+        if p.teleports == 1:
+            surface.blit(p.tpSprite(),p.tpCoords())
     for p in powerUps:
         for i in players:
             if p.rect().colliderect(i.rect()):
-                i.getPowerUp(p)
+                i.getPowerUp(p,bricks)
                 powerUps.remove(p)
         else:
             surface.blit(p.render(), p.coords())
