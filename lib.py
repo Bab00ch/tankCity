@@ -1,5 +1,4 @@
 import random
-
 import pygame
 from random import randint
 
@@ -199,6 +198,17 @@ class player:
 
     def tpSprite(self):
         return teleport
+
+    def haveKilled(self,brickList):
+        while True:
+            collide = False
+            self.x = randint(0, 576)
+            self.y = randint(0, 576)
+            for i in brickList:
+                if self.rect().colliderect(i.rect()):
+                    collide = True
+            if not collide:
+                break
 
 
 class newBrick:

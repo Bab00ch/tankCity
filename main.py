@@ -1,6 +1,6 @@
 import pygame
 from random import randint
-
+import sys
 import lib
 
 pygame.init()
@@ -20,8 +20,6 @@ bullet_gui = lib.scale(pygame.image.load('assets/bullet_gui.png'),2)
 heart = lib.scale(pygame.image.load('assets/heart.png'),2)
 teleport_gui = lib.scale(pygame.image.load('assets/teleport.png'),2)
 
-
-clock = pygame.time.Clock()
 
 bricks = []
 for i in range(0,10):
@@ -50,6 +48,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+            sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 if p1.canShoot():
@@ -92,7 +91,7 @@ while running:
                 if not p == i.sender:
                     bullets.remove(i)
                     p.hp = p.hp - 1
-                    print(p.hp)
+                    i.sender.haveKilled(bricks)
                     explosion.play()
                     if p.hp == 0:
                         running = False
@@ -127,7 +126,7 @@ while running:
         surface.blit(teleport_gui, (576-a, 640))
 
     pygame.display.flip()
-    clock.tick(120)
+    pygame.time.Clock().tick(240)
 x = 250
 y = 100
 a = 0
@@ -136,27 +135,30 @@ for i in range(0, 60):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+            sys.exit()
     surface.fill((0, 0, 0))
     pygame.display.flip()
-    clock.tick(120)
+    pygame.time.Clock().tick(120)
 
 for i in range(0,60):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+            sys.exit()
     surface.fill((0, 0, 0))
     if p2 == loser:
         surface.blit(player1_img, (x,y))
     else:
         surface.blit(player2_img, (x, y))
     pygame.display.flip()
-    clock.tick(120)
+    pygame.time.Clock().tick(120)
 explosion.play()
 pygame.time.wait(500)
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+            sys.exit()
     surface.fill((0, 0, 0))
     if p2 == loser:
         surface.blit(player1_img, (x,y))
@@ -164,4 +166,3 @@ while True:
         surface.blit(player2_img, (x, y))
     surface.blit(won, (400, 400))
     pygame.display.flip()
-    clock.tick(120)
