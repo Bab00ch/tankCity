@@ -1,5 +1,5 @@
-# BattleCity
-Un jeu de tanks en python inspiré du célèbre jeu BattleCity de Namco.
+# TankCity
+Un jeu simple de duels de tanks en python inspiré du célèbre jeu BattleCity de Namco.
 # Comment jouer
 Le joueur 1 doit utiliser z,q,s et d pour déplacer le char. On ne peut pas avancer en diagonale et pour l'instant la priorité du mouvement est pour les mouvement horizontaux. Le joueur 1 utilise la touche espace pour tirer et la touche e pour utiliser le téléporteur. Le joueur 2 doit utiliser les flèches pour déplacer le char. La priorité du mouvement est la même pour les deux joueurs. Le joueur 2 utilise la touche m pour tirer et la touche l pour utiliser le téléporteur. Les règles du jeu sont simples : vous devez tirer sur votre adversaire, qui perdra alors des vies. Le premier qui n'a plus de vies perd le jeu.
 
