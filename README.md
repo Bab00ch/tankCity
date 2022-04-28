@@ -8,6 +8,6 @@ Merci à :
  - How2Bboss - pour la musique de fond
  Omega Pixel Art pour les effets sonores
 # Participer
-Ce jeu est loin d'être parfait alors si vous avez des suggestions, que vous voulez faire de meilleurs sprites, faire des musiques ou carrément m'aider à programmer le jeu, vous pouvez faire des pulls request (pour les suggestions vous pouvez créer une issue). Vous serez alors évidemment crédités dans le jeu.
+Ce jeu est loin d'être parfait alors si vous avez des suggestions, que vous voulez faire de meilleurs sprites, faire des musiques ou carrément m'aider à programmer le jeu, vous pouvez faire des pulls request (pour les suggestions vous pouvez créer une issue). Vous serez alors évidemment crédités dans le jeu. Vous pouvez m'envoyer un message privé sur discord si vous êtes interressés pour m'aider (Babooch#3906).
 # Babooch
 Je suis un débutant en programmation alors j'accepte tous conseils et les critiques si elles sont constructives.
