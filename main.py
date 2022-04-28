@@ -1,11 +1,11 @@
 import pygame
 from random import randint
-import sys
+from sys import exit
 import lib
 
 pygame.init()
 surface = pygame.display.set_mode((640,704))
-pygame.display.set_caption("Battle City")
+pygame.display.set_caption("Tank City")
 pygame.display.set_icon(pygame.image.load('assets/icon.png'))
 pygame.mixer.music.load("assets/city.mp3")
 pygame.mixer.music.play(-1)
@@ -48,7 +48,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
+            exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 if p1.canShoot():
@@ -135,7 +135,7 @@ for i in range(0, 60):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
+            exit()
     surface.fill((0, 0, 0))
     pygame.display.flip()
     pygame.time.Clock().tick(120)
@@ -158,11 +158,12 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
+            exit()
     surface.fill((0, 0, 0))
     if p2 == loser:
         surface.blit(player1_img, (x,y))
     else:
         surface.blit(player2_img, (x, y))
     surface.blit(won, (400, 400))
+    pygame.time.Clock().tick(240)
     pygame.display.flip()
